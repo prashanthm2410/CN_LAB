@@ -1,50 +1,51 @@
+import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.*;
-class Frame{
-    int sqno,data;
-    Frame(int sqno, int data)
-    {
-        this.sqno=sqno;
-        this.data=data;
-    }
-}
-public class framesort {
-    public static void main(String[] args) {
-        int n;
-        System.out.println("Enter the size of the data");
-        Scanner sc = new Scanner(System.in);
-        int total=sc.nextInt();
-        System.out.println("Enter the size of each data packet");
-        int size=sc.nextInt();
-        n=total/size;
 
-        List <Integer> seqList = new ArrayList<>();
-        for(int i=0;i<n;i++)
-        {
-            seqList.add(i);
+class Frame {
+
+    int seqNo;
+    String data;
+
+    public Frame(int seqNo) {
+        this.seqNo = seqNo;
+    }
+
+}
+
+public class Framesort {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("ENTER THE TOTAL SIZE OF THE MESSAGE");
+        int total = sc.nextInt();
+
+        System.out.println("ENTER THE SIZE OF EACH DATA PACKET");
+        int size = sc.nextInt();
+
+        int n = total / size;
+        List<Frame> frames = new ArrayList<Frame>();
+        for (int i = 0; i < n; i++) {
+            frames.add(new Frame(i));
         }
 
-        List<Frame> frames= new ArrayList<>();
-        for(int seqno : seqList)
-        {   
-            System.out.println("Enter the data for frame "+seqno);
-            int data = sc.nextInt();
-            frames.add(new Frame(seqno,data));
+        for (Frame f : frames) {
+            System.out.println("ENTER THE DATA FOR EACH FRAME " + f.seqNo);
+            f.data = sc.next();
         }
         Collections.shuffle(frames);
+        System.out.println("Before sorting the frames");
+        for (Frame f : frames) {
+            System.out.println("THE SEQNO " + f.seqNo + " MESSAGE " + f.data);
+        }
+        Collections.sort(frames, (f1, f2) -> Integer.compare(f1.seqNo, f2.seqNo));
 
-        System.out.println("Frames before shuffelling");
-        for (Frame frame : frames)
-        {
-            System.out.println("Frame "+frame.sqno+":"+frame.data+"\n");
+        System.out.println("AFTER sorting the frames");
+        for (Frame f : frames) {
+            System.out.println("THE SEQNO " + f.seqNo + " MESSAGE " + f.data);
         }
 
-        
-        Collections.sort(frames,(f1,f2)->Integer.compare(f1.sqno,f2.sqno));
-
-        System.out.println("After Sorting");
-        for(Frame frame:frames){
-            System.out.println("Frame "+frame.sqno+":"+frame.data+"\n");
-        }
         sc.close();
+
     }
 }
