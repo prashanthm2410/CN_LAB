@@ -11,7 +11,6 @@ public class CRC {
         for(int i=0;i<rem.length()-poly.length()+1;i++){
             if (rem.charAt(i)=='1'){
                 for(int j=0; j<poly.length();j++){
-                    //rem[i+j] = (rem[i+j]==poly[j]) ? '0': '1';
                     rem=rem.substring(0,i+j)+(rem.charAt(i+j)==poly.charAt(j)? '0':'1')+rem.substring(i+j+1);
                 }
             }
