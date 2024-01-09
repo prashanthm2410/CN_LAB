@@ -17,7 +17,7 @@ public class RED {
                 System.out.println("Packets Dropped (QUEUE FULL) \n");
                 drop_prob=MIN_PROB;
             }
-            else if (rand.nextDouble()<drop_prob){
+            else if (rand.nextDouble()<drop_prob && i>=5){
                 System.out.println("Packets Dropped (RANDOM) \n");
                 drop_prob += (MAX_PROB-MIN_PROB)/(MAX_PACKETS-1.0);
             }
