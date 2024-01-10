@@ -1,7 +1,0 @@
-ping 8.8.8.8
-ping google.com
-sudo su
-cd /etc
-rm -rf resolv.conf
-echo "nameserver 8.8.8.8" > resolv.conf
-exit
